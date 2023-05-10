@@ -1,0 +1,3 @@
+D:/Microcomputer_leaning/Projects/Imagine_Cup/cmake-build-debug/CMakeFiles/Imagine_Cup.elf.dir
+D:/Microcomputer_leaning/Projects/Imagine_Cup/cmake-build-debug/CMakeFiles/edit_cache.dir
+D:/Microcomputer_leaning/Projects/Imagine_Cup/cmake-build-debug/CMakeFiles/rebuild_cache.dir
