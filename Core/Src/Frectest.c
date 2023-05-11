@@ -63,5 +63,7 @@ float Frec_Get_Resistance()
 void Frec_Cal_Resistance()
 {
 //    resistance = 1.0f / (2.0f * PI * frec * cap);
-        resistance = 1.44f / (cap * frec)*100;
+//        resistance = 1.44f / (cap * frec)*100;
+//    resistance = 1.44f / (cap * frec)*1000;
+    resistance =  (float )(-2.23e+04)/(frec+(-4334))+2.974e+04f;
 }
