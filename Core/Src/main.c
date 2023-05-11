@@ -25,6 +25,7 @@
 /* USER CODE BEGIN Includes */
 #include "OLED.h"
 #include "MatrixKey.h"
+#include "Frectest.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -88,16 +89,20 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_TIM1_Init();
+  MX_TIM2_Init();
+  MX_TIM3_Init();
   /* USER CODE BEGIN 2 */
   HAL_TIM_Base_Start_IT(&htim1);
   OLED_Init();
   OLED_ShowString(0, 0, "Hello", 16);
+  Frec_init();
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+      Frec_Start_Test();
     if(MatrixKey())
     {
       HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
@@ -154,7 +159,21 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
-
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+    if(htim->Instance == TIM1)//设定该定时器10ms进一次中断
+    {
+        MatrixKey_Loop();
+    }
+    if (htim->Instance == TIM2)
+    {
+        Frec_Overflow_Handle();
+    }
+    if (htim->Instance == TIM3)
+    {
+        Frec_Trec_TIMer_Handle();
+    }
+}
 /* USER CODE END 4 */
 
 /**

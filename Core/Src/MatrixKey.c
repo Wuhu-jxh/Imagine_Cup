@@ -121,13 +121,7 @@ void MatrixKey_Loop(void)
 }
 
 
-void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
-{
-  if(htim==&TIM)//设定该定时器10ms进一次中断
-  {
-    MatrixKey_Loop();
-  }
-}
+
 
 
 

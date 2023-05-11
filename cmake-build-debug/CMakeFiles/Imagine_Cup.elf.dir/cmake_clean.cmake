@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/Imagine_Cup.elf.dir/Core/Src/Frectest.c.obj"
+  "CMakeFiles/Imagine_Cup.elf.dir/Core/Src/Frectest.c.obj.d"
   "CMakeFiles/Imagine_Cup.elf.dir/Core/Src/MatrixKey.c.obj"
   "CMakeFiles/Imagine_Cup.elf.dir/Core/Src/MatrixKey.c.obj.d"
   "CMakeFiles/Imagine_Cup.elf.dir/Core/Src/OLED.c.obj"
@@ -49,7 +51,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/Imagine_Cup.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c.obj"
   "CMakeFiles/Imagine_Cup.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c.obj.d"
   "Imagine_Cup.elf"
-  "Imagine_Cup.elf.manifest"
   "Imagine_Cup.elf.pdb"
 )
 
