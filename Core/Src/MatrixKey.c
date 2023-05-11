@@ -41,31 +41,31 @@ uint8_t MatrixKey_GetState()
 	if(!HAL_GPIO_ReadPin(Y1_GPIO_Port, Y1_Pin)){KeyNum=1;}//如果接收到Y1为低电平则判定1按键按下
 	if(!HAL_GPIO_ReadPin(Y2_GPIO_Port, Y2_Pin)){KeyNum=2;}
 	if(!HAL_GPIO_ReadPin(Y3_GPIO_Port, Y3_Pin)){KeyNum=3;}
-	if(!HAL_GPIO_ReadPin(Y4_GPIO_Port, Y4_Pin)){KeyNum=4;}
+	if(!HAL_GPIO_ReadPin(Y4_GPIO_Port, Y4_Pin)){KeyNum=10;}
   HAL_GPIO_WritePin(X1_GPIO_Port, X1_Pin, GPIO_PIN_SET);
 
   //由于初始化为上拉状态故此处拉低X2行的电平
   HAL_GPIO_WritePin(X2_GPIO_Port, X2_Pin, GPIO_PIN_RESET);
-  if(!HAL_GPIO_ReadPin(Y1_GPIO_Port, Y1_Pin)){KeyNum=5;}//如果接收到Y1为低电平则判定1按键按下
-  if(!HAL_GPIO_ReadPin(Y2_GPIO_Port, Y2_Pin)){KeyNum=6;}
-  if(!HAL_GPIO_ReadPin(Y3_GPIO_Port, Y3_Pin)){KeyNum=7;}
-  if(!HAL_GPIO_ReadPin(Y4_GPIO_Port, Y4_Pin)){KeyNum=8;}
+  if(!HAL_GPIO_ReadPin(Y1_GPIO_Port, Y1_Pin)){KeyNum=4;}//如果接收到Y1为低电平则判定1按键按下
+  if(!HAL_GPIO_ReadPin(Y2_GPIO_Port, Y2_Pin)){KeyNum=5;}
+  if(!HAL_GPIO_ReadPin(Y3_GPIO_Port, Y3_Pin)){KeyNum=6;}
+  if(!HAL_GPIO_ReadPin(Y4_GPIO_Port, Y4_Pin)){KeyNum=11;}
   HAL_GPIO_WritePin(X2_GPIO_Port, X2_Pin, GPIO_PIN_SET);
 
   //由于初始化为上拉状态故此处拉低X3行的电平
   HAL_GPIO_WritePin(X3_GPIO_Port, X3_Pin, GPIO_PIN_RESET);
-  if(!HAL_GPIO_ReadPin(Y1_GPIO_Port, Y1_Pin)){KeyNum=9;}//如果接收到Y1为低电平则判定1按键按下
-  if(!HAL_GPIO_ReadPin(Y2_GPIO_Port, Y2_Pin)){KeyNum=10;}
-  if(!HAL_GPIO_ReadPin(Y3_GPIO_Port, Y3_Pin)){KeyNum=11;}
+  if(!HAL_GPIO_ReadPin(Y1_GPIO_Port, Y1_Pin)){KeyNum=7;}//如果接收到Y1为低电平则判定1按键按下
+  if(!HAL_GPIO_ReadPin(Y2_GPIO_Port, Y2_Pin)){KeyNum=8;}
+  if(!HAL_GPIO_ReadPin(Y3_GPIO_Port, Y3_Pin)){KeyNum=9;}
   if(!HAL_GPIO_ReadPin(Y4_GPIO_Port, Y4_Pin)){KeyNum=12;}
   HAL_GPIO_WritePin(X3_GPIO_Port, X3_Pin, GPIO_PIN_SET);
 
   //由于初始化为上拉状态故此处拉低X4行的电平
   HAL_GPIO_WritePin(X4_GPIO_Port, X4_Pin, GPIO_PIN_RESET);
   if(!HAL_GPIO_ReadPin(Y1_GPIO_Port, Y1_Pin)){KeyNum=13;}//如果接收到Y1为低电平则判定1按键按下
-  if(!HAL_GPIO_ReadPin(Y2_GPIO_Port, Y2_Pin)){KeyNum=14;}
+  if(!HAL_GPIO_ReadPin(Y2_GPIO_Port, Y2_Pin)){KeyNum=0;}
   if(!HAL_GPIO_ReadPin(Y3_GPIO_Port, Y3_Pin)){KeyNum=15;}
-  if(!HAL_GPIO_ReadPin(Y4_GPIO_Port, Y4_Pin)){KeyNum=16;}
+  if(!HAL_GPIO_ReadPin(Y4_GPIO_Port, Y4_Pin)){KeyNum=13;}
   HAL_GPIO_WritePin(X4_GPIO_Port, X4_Pin, GPIO_PIN_SET);
 	return KeyNum;//返回按键的值
 }

@@ -57,7 +57,21 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+uint8_t huandang(float data)
+{
+    if (data != 0) {
+        if (data < 100) {
+            return 10;
+        }
+        if (data >= 100 && data < 1000) {
+            return 11;
+        }
+        if (data < 10000 && data >= 1000) {
+            return 12;
+        }
+    }
+    return 13;
+}
 /* USER CODE END 0 */
 
 /**
@@ -68,6 +82,8 @@ int main(void)
 {
   /* USER CODE BEGIN 1 */
   uint8_t temp, temp1=0;
+  int num = 10, cnt1 = 0, cnt2;
+  float zuzhi;
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -94,7 +110,7 @@ int main(void)
   /* USER CODE BEGIN 2 */
   HAL_TIM_Base_Start_IT(&htim1);
   OLED_Init();
-  OLED_ShowString(0, 0, "Hello", 16);
+
   Frec_init();
   /* USER CODE END 2 */
 
@@ -103,16 +119,62 @@ int main(void)
   while (1)
   {
       Frec_Start_Test();
-    if(MatrixKey())
-    {
-      HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
-      temp = MatrixKey();
+      zuzhi = Frec_Get_Resistance();
+      cnt1 = MatrixKey();
+      cnt2 = huandang(zuzhi);
 
-    }
-    OLED_ShowNum(0, 4, temp1++, 2, 16);
-    OLED_ShowNum(0, 2, temp, 2, 16);
-    HAL_Delay(100);
-    /* USER CODE END WHILE */
+      if (num != cnt1)
+      {
+          OLED_Clear();
+          num = cnt1;
+          if (num != cnt2 && cnt2 != 13)
+          {
+              OLED_Clear();
+              num = cnt2;
+          }
+      }
+
+      if (num == 10)
+      {
+
+          OLED_ShowChinese(0,0,"量程",16);
+          OLED_ShowNum(32,0,100,3,16);
+          OLED_ShowChinese(64,0,"Ω",16);
+          OLED_ShowChinese(0,2,"电阻大小：",16);
+          OLED_ShowFloatNum(64,2,zuzhi,21,16);
+      }
+      if (num == 11)
+      {
+          zuzhi = zuzhi / 1000;
+          OLED_ShowChinese(0,0,"量程",16);
+          OLED_ShowNum(48,0,1,1,16);
+          OLED_ShowString(55,0,"k",16);
+          OLED_ShowChinese(64,0,"Ω",16);
+          OLED_ShowChinese(0,2,"电阻大小：",16);
+          OLED_ShowNum(64,2,0,1,16);
+          OLED_ShowFloatNum(70,2,zuzhi,03,16);
+      }
+      if (num == 12)
+      {
+          zuzhi = zuzhi / 1000;
+          OLED_ShowChinese(0,0,"量程",16);
+          OLED_ShowNum(48,0,10,2,16);
+          OLED_ShowString(70,0,"k",16);
+          OLED_ShowChinese(80,0,"Ω",16);
+          OLED_ShowChinese(0,2,"电阻大小：",16);
+          OLED_ShowFloatNum(64,2,zuzhi,12,16);
+      }
+      if (num == 13)
+      {
+          zuzhi = zuzhi / 1000;
+          OLED_ShowChinese(0,0,"量程",16);
+          OLED_ShowNum(48,0,100,3,16);
+          OLED_ShowString(75,0,"k",16);
+          OLED_ShowChinese(85,0,"Ω",16);
+          OLED_ShowChinese(0,2,"电阻大小：",16);
+          OLED_ShowFloatNum(64,2,zuzhi,21,16);
+      }
+      /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
   }
