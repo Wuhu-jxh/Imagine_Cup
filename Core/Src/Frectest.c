@@ -42,7 +42,7 @@ void Frec_Trec_TIMer_Handle()
         HAL_TIM_Base_Stop(&htim3);
         HAL_TIM_Base_Stop(&htim2);
         cnt = htim2.Instance->CNT;
-        frec = 1000000.0f / ((cnt+65535*overflow) * (float)(SampleTimeMS)); // NOLINT(cppcoreguidelines-narrowing-conversions)
+        frec =(cnt+65535*overflow)/0.2; // NOLINT(cppcoreguidelines-narrowing-conversions)
         overflow = 0;
         Frec_Cal_Resistance();
         isTiger = false;
