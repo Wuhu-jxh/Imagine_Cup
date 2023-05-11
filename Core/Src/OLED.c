@@ -15,6 +15,7 @@
 #include "SoftWare_I2C.h"
 #include "OLEDFont.h"
 
+uint16_t OLED_GRAM[128][64];//画线存数据
 /***********************************************************
 *@fuction:OLED_WR_Byte
 *@brief	:OLED写一个字节
@@ -506,5 +507,103 @@ void OLED_DrawBMP(unsigned char x0, unsigned char y0, unsigned char x1, unsigned
         {
             OLED_WR_Byte(BMP[j++], OLED_DATA);
         }
+    }
+}
+/***********************************************************
+*@fuction:OLED_Refresh_Gram
+*@brief	:更新显存
+*@param	:更新显存
+*@return:void
+*@author:HY
+*@date	:2023-05-12
+***********************************************************/
+void OLED_Refresh_Gram(void)
+{
+    uint8_t i, n;
+    for (i = 0; i < 8; i++)
+    {
+        OLED_WR_Byte(0xb0+i,OLED_CMD);
+        OLED_WR_Byte(0x00,OLED_CMD);
+        OLED_WR_Byte(0x10,OLED_CMD);
+        for (n = 0; n < 128; n++)OLED_WR_Byte(OLED_GRAM[n][i],OLED_DATA);
+    }
+}
+/***********************************************************
+*@fuction:OLED_DrawPoint
+*@brief	:画点
+*@param	:画点x0-127 y0-32 t 1填充 0清空
+*@return:void
+*@author:HY
+*@date	:2023-05-12
+***********************************************************/
+void OLED_DrawPoint(uint8_t x,uint8_t y,uint8_t t)
+{
+    uint8_t pos,bx,temp=0;
+    if (x>127||y>31)return;
+    pos=y/8;
+    bx=y%8;
+    temp=1<<bx;
+    if(t)OLED_GRAM[x][pos] |= temp;
+    else OLED_GRAM[x][pos]&=-temp;
+}
+/***********************************************************
+*@fuction:gui_draw_hline
+*@brief	:画水平线条
+*@param	:y为水平线，x0为起始位子，x1为结束位子
+*@return:void
+*@author:HY
+*@date	:2023-05-12
+***********************************************************/
+void gui_draw_hline(uint16_t y,uint16_t x0,uint16_t x1)
+{
+    uint16_t x = 0;
+    for (x = x0; x <= x1; x++)
+    {
+        OLED_DrawPoint(x,y,1);
+    }
+}
+/***********************************************************
+*@fuction:gui_draw_vline
+*@brief	:画垂直线条
+*@param	:x为垂直线位子，y0为起始位子，y1为结束位子
+*@return:void
+*@author:HY
+*@date	:2023-05-12
+***********************************************************/
+void gui_draw_vline(uint16_t x, uint16_t y0, uint16_t y1)
+{
+    uint16_t y = 0;
+    for (y = y0; y <= y1; y++)
+    {
+        OLED_DrawPoint(x,y,1);
+    }
+}
+/***********************************************************
+*@fuction:gui_draw_axis
+*@brief	:画一个坐标系
+*@param	:
+*@return:void
+*@author:HY
+*@date	:2023-05-12
+***********************************************************/
+void gui_draw_axis(void)
+{
+    gui_draw_hline(31,0,120);
+    gui_draw_vline(0,0,31);
+}
+/***********************************************************
+*@fuction:Gram_clear
+*@brief	:数组清零
+*@param	:数组清零
+*@return:void
+*@author:HY
+*@date	:2023-05-12
+***********************************************************/
+void Gram_clear(void)
+{
+    uint8_t i,n;
+    for (i = 0; i < 8; i++)
+    {
+        for (n = 0; n < 128; n++) OLED_GRAM[n][i] = 0;
     }
 }

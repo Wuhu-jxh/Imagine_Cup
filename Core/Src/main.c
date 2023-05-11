@@ -59,18 +59,24 @@ void SystemClock_Config(void);
 /* USER CODE BEGIN 0 */
 uint8_t huandang(float data)
 {
-    if (data != 0) {
-        if (data < 100) {
-            return 10;
+        if (data != 0) {
+            if (data > 0 && data <= 100)
+            {
+                return 10;
+            }else if(data > 100 && data <=1000)
+            {
+                return 11;
+            }
+            else if (data >1000 && data <=10000)
+
+            {
+                return 12;
+            }
+        }else
+        {
+            return 13;
         }
-        if (data >= 100 && data < 1000) {
-            return 11;
-        }
-        if (data < 10000 && data >= 1000) {
-            return 12;
-        }
-    }
-    return 13;
+
 }
 /* USER CODE END 0 */
 
@@ -78,11 +84,16 @@ uint8_t huandang(float data)
   * @brief  The application entry point.
   * @retval int
   */
+
+
 int main(void)
 {
   /* USER CODE BEGIN 1 */
   uint8_t temp, temp1=0;
-  int num = 10, cnt1 = 0, cnt2;
+  int num = 10, cnt1 = 0, cnt2, zidong;
+  uint8_t i,j=0,k = 0;
+  uint16_t h;
+  uint8_t H[128];
   float zuzhi;
   /* USER CODE END 1 */
 
@@ -120,23 +131,77 @@ int main(void)
   {
       Frec_Start_Test();
       zuzhi = Frec_Get_Resistance();
-      cnt1 = MatrixKey();
-      cnt2 = huandang(zuzhi);
+      cnt1 = MatrixKey();//按键值
+      cnt2 = huandang(zuzhi);//换挡值
+//      pl = Frec_Get_Frec();
 
+
+      if (cnt1 == 15)
+      {
+          zidong = 1;
+
+      }
+      else
+      {
+          zidong = 0;
+      }
+      if (zidong == 1)
+      {
+          if (num != cnt2 && cnt2 != 13)
+          {
+              if (cnt1 != cnt2)
+              {
+                  OLED_Clear();
+              }
+              cnt1 = cnt2;
+
+          }
+      }
       if (num != cnt1)
       {
           OLED_Clear();
           num = cnt1;
-          if (num != cnt2 && cnt2 != 13)
-          {
-              OLED_Clear();
-              num = cnt2;
-          }
       }
+      if (cnt1 == 14)
+      {
+          for (i = 0; i < 128; i++)
+          {
+              H[i] = 32;
+          }
+          if (k == 0)
+          {
+              Gram_clear();
 
+              OLED_Clear();
+              k = 1;
+
+          }
+        h = zuzhi*(32.0/100000);
+        h=(int)h;
+        gui_draw_axis();
+        H[j] = 32-h;
+        for (i = 0; i < 128; i++)
+        {
+            OLED_DrawPoint(i, H[i], 1);
+
+        }
+
+        j++;
+          OLED_Refresh_Gram();
+        if (j>127)
+        {
+            j = 0;
+            k = 0;
+            OLED_Refresh_Gram();
+            Gram_clear();
+            OLED_Clear();
+        }
+
+
+      }
       if (num == 10)
       {
-
+          OLED_ShowFloatNum(0,4,zuzhi,66,16);
           OLED_ShowChinese(0,0,"量程",16);
           OLED_ShowNum(32,0,100,3,16);
           OLED_ShowChinese(64,0,"Ω",16);
@@ -145,7 +210,8 @@ int main(void)
       }
       if (num == 11)
       {
-          zuzhi = zuzhi / 1000;
+          OLED_ShowFloatNum(0,4,zuzhi,66,16);
+          zuzhi = zuzhi/10000;
           OLED_ShowChinese(0,0,"量程",16);
           OLED_ShowNum(48,0,1,1,16);
           OLED_ShowString(55,0,"k",16);
@@ -156,6 +222,7 @@ int main(void)
       }
       if (num == 12)
       {
+          OLED_ShowFloatNum(0,4,zuzhi,66,16);
           zuzhi = zuzhi / 1000;
           OLED_ShowChinese(0,0,"量程",16);
           OLED_ShowNum(48,0,10,2,16);
@@ -166,6 +233,7 @@ int main(void)
       }
       if (num == 13)
       {
+          OLED_ShowFloatNum(0,4,zuzhi,66,16);
           zuzhi = zuzhi / 1000;
           OLED_ShowChinese(0,0,"量程",16);
           OLED_ShowNum(48,0,100,3,16);

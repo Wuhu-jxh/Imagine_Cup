@@ -9,7 +9,7 @@
 //#define UART_ENABLE 1
 //#define UART_PORT huart1
 /*********测量电路配置*********/
-#define CAP_VALUE 0.02f  //电容值
+#define CAP_VALUE 0.000001f  //电容值
 
 /********SSD1306配置*********/
 #define SSD1306_I2C_ADDR        0x78

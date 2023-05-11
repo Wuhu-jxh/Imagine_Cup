@@ -12,6 +12,8 @@
 #ifndef __OLED_H__
 #define __OLED_H__
 
+#include <stdint-gcc.h>
+
 #define OLED_CMD  0	//Ð´ÃüÁî
 #define OLED_DATA 1	//Ð´Êý¾Ý
 
@@ -43,5 +45,10 @@ void OLED_ShowHexNum(unsigned char Line, unsigned char Column, unsigned int Numb
 void OLED_ShowSignedNum(unsigned char x, unsigned char y, int num, unsigned char len, unsigned char size2);
 void OLED_ShowBinNum(unsigned char x, unsigned char y, unsigned char num, unsigned char len, unsigned char size2);
 void OLED_ShowFloatNum(unsigned char x, unsigned char y, float num, unsigned char len, unsigned char size2);
-
+void Gram_clear(void);
+void gui_draw_axis(void);
+void gui_draw_vline(uint16_t x, uint16_t y0, uint16_t y1);
+void gui_draw_hline(uint16_t y,uint16_t x0,uint16_t x1);
+void OLED_DrawPoint(uint8_t x,uint8_t y,uint8_t t);
+void OLED_Refresh_Gram(void);
 #endif

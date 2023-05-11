@@ -81,6 +81,7 @@ CMakeFiles/Imagine_Cup.elf.dir/Core/Src/MatrixKey.c.obj: D:/study/stm32_project/
 
 CMakeFiles/Imagine_Cup.elf.dir/Core/Src/OLED.c.obj: D:/study/stm32_project/Imagine_Cup/Core/Src/OLED.c \
   D:/study/stm32_project/Imagine_Cup/Core/Inc/OLED.h \
+  D:/study/stm32_project/clion/gcc-arm-none-eabi-10.3-2021.10/lib/gcc/arm-none-eabi/10.3.1/include/stdint-gcc.h \
   D:/study/stm32_project/Imagine_Cup/Core/Inc/SoftWare_I2C.h \
   D:/study/stm32_project/Imagine_Cup/Core/Inc/main.h \
   D:/study/stm32_project/Imagine_Cup/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h \
@@ -227,6 +228,7 @@ CMakeFiles/Imagine_Cup.elf.dir/Core/Src/main.c.obj: D:/study/stm32_project/Imagi
   D:/study/stm32_project/Imagine_Cup/Core/Inc/main.h \
   D:/study/stm32_project/Imagine_Cup/Core/Inc/gpio.h \
   D:/study/stm32_project/Imagine_Cup/Core/Inc/OLED.h \
+  D:/study/stm32_project/clion/gcc-arm-none-eabi-10.3-2021.10/lib/gcc/arm-none-eabi/10.3.1/include/stdint-gcc.h \
   D:/study/stm32_project/Imagine_Cup/Core/Inc/MatrixKey.h \
   D:/study/stm32_project/Imagine_Cup/Core/Inc/Frectest.h
 
@@ -955,8 +957,6 @@ D:/study/stm32_project/Imagine_Cup/Drivers/CMSIS/Device/ST/STM32F1xx/Include/sys
 
 D:/study/stm32_project/Imagine_Cup/Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h:
 
-D:/study/stm32_project/clion/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/time.h:
-
 D:/study/stm32_project/Imagine_Cup/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc_ex.h:
 
 D:/study/stm32_project/clion/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/config.h:
@@ -995,6 +995,8 @@ D:/study/stm32_project/Imagine_Cup/Core/Src/MatrixKey.c:
 
 D:/study/stm32_project/Imagine_Cup/Core/Inc/MatrixKey.h:
 
+D:/study/stm32_project/clion/gcc-arm-none-eabi-10.3-2021.10/lib/gcc/arm-none-eabi/10.3.1/include/stdint-gcc.h:
+
 D:/study/stm32_project/Imagine_Cup/Core/Inc/OLED.h:
 
 D:/study/stm32_project/Imagine_Cup/Core/Inc/SoftWare_I2C.h:
@@ -1018,6 +1020,8 @@ D:/study/stm32_project/clion/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/includ
 D:/study/stm32_project/clion/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/reent.h:
 
 D:/study/stm32_project/clion/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/_types.h:
+
+D:/study/stm32_project/clion/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/time.h:
 
 D:/study/stm32_project/clion/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/endian.h:
 
