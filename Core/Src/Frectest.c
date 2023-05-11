@@ -7,7 +7,7 @@
 #include "Frectest.h"
 #include "settings.h"
 uint64_t cnt = -1;
-uint32_t SampleTimeMS = 500;
+uint32_t SampleTimeMS = 200;
 uint8_t overflow = 0;
 float frec = 0;
 bool isTiger = false;
@@ -27,7 +27,7 @@ void Frec_Start_Test()
         //TIM3用于计时
         //TIM2用于计数
         __HAL_TIM_SET_PRESCALER(&htim3, 720);
-        __HAL_TIM_SET_COUNTER(&htim3, (SampleTimeMS * 100) - 1);
+        __HAL_TIM_SET_COUNTER(&htim3, 1999);
         HAL_TIM_Base_Start_IT(&htim3);
         HAL_TIM_Base_Start(&htim2);
         htim2.Instance->CNT=0;
@@ -42,7 +42,6 @@ void Frec_Trec_TIMer_Handle()
         HAL_TIM_Base_Stop(&htim3);
         HAL_TIM_Base_Stop(&htim2);
         cnt = htim2.Instance->CNT;
-        htim2.Instance->CNT = 0;
         frec = 1000000.0f / ((cnt+65535*overflow) * (float)(SampleTimeMS)); // NOLINT(cppcoreguidelines-narrowing-conversions)
         overflow = 0;
         Frec_Cal_Resistance();

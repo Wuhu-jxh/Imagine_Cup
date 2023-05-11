@@ -223,7 +223,7 @@ void SystemClock_Config(void)
 /* USER CODE BEGIN 4 */
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
-    if(htim->Instance == TIM1)//Éè¶¨¸Ã¶¨Ê±Æ÷10ms½øÒ»´ÎÖÐ¶Ï
+    if(htim->Instance == TIM1)//ï¿½è¶¨ï¿½Ã¶ï¿½Ê±ï¿½ï¿½10msï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ð¶ï¿½
     {
         MatrixKey_Loop();
     }
