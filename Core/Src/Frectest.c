@@ -9,7 +9,7 @@
 uint64_t cnt = -1;
 uint32_t SampleTimeMS = 200;
 uint8_t overflow = 0;
-float frec = 0;
+uint64_t frec = 0;
 bool isTiger = false;
 void calResistance();
 float resistance = 0; //测量电路中电阻的值
